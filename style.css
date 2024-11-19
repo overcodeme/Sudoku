@@ -1,3 +1,7 @@
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 .container {
     position: absolute;
     display: flex;
@@ -11,7 +15,6 @@
 .grid-field {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
 }
 
 .block {
@@ -26,9 +29,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     font-size: 20px;
+}
+
+.elem:hover {
+    background-color: LightGray;
+    cursor: pointer;
 }
 
 .input {
@@ -39,32 +47,42 @@
 
 .grid-input-buttons {
     display: grid;
-    grid-template-columns: repeat(3, 120px);
-    grid-template-rows: repeat(3, 120px);
-    gap: 10px;
+    grid-template-columns: repeat(3, 140px);
+    grid-template-rows: repeat(3, 140px);
+    gap: 7px;
 }
 
 .input-num {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: LightSkyBlue;
-    color: DarkSlateGray;
-    font-size: 34px;
+    background-color: Gainsboro;
+    color: MidnightBlue;
+    font-size: 55px;
+    border-radius: 10px;
 }
 
 .input-num:hover {
     cursor: pointer;
-    background-color: PowderBlue;
+    background-color: LightGray;
 }
 
 
 .button1 {
     margin: 10px auto;
-    width: 150px;
-    height: 30px;
+    width: 100%;
+    height: 50px;
     border-radius: 5px;
+    background-color: MidnightBlue;
+    color: white;
     cursor: pointer;
+    font-size: 25px;
+    font-weight: 600;
+    transition: 0.1s linear;
+}
+
+.button1:hover {
+    background-color: MediumBlue;
 }
 
 .interact {
