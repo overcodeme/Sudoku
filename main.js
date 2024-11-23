@@ -1,9 +1,7 @@
 const board_field = document.querySelector('.grid-field')
-console.log(board_field);
+board = window.board;
+console.log(board);
 
-let board = Array.from({ length: 9 }, () => 
-    Array(9).fill(0)
-);
 
 for (let blockRow = 0; blockRow < 3; blockRow++) {
     for (let blockCol = 0; blockCol < 3; blockCol++) {
@@ -14,9 +12,17 @@ for (let blockRow = 0; blockRow < 3; blockRow++) {
             for (let colInBlock = 0; colInBlock < 3; colInBlock++) {
                 const elem = document.createElement('div');
                 elem.classList.add("elem");
+                elem.textContent = board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock];
                 block.appendChild(elem);
             }
         }
         board_field.appendChild(block);
     }
 }
+
+let elems = document.querySelectorAll('.elem')
+elems.forEach(() => {
+    document.addEventListener('click', () => {
+        
+    })
+})
