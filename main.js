@@ -12,7 +12,11 @@ for (let blockRow = 0; blockRow < 3; blockRow++) {
             for (let colInBlock = 0; colInBlock < 3; colInBlock++) {
                 const elem = document.createElement('div');
                 elem.classList.add("elem");
-                elem.textContent = board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock];
+
+                if (board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock] != 0) {
+                    elem.textContent = board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock];
+                }
+
                 block.appendChild(elem);
             }
         }
