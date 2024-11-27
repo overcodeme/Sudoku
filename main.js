@@ -1,5 +1,7 @@
+import createSudoku from './generator.js';
+
+let board = createSudoku();
 const board_field = document.querySelector('.grid-field')
-board = window.board;
 console.log(board);
 
 
