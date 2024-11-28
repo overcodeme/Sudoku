@@ -5,7 +5,6 @@ let board = Array.from({ length: 9 }, () =>
 
 function createSudoku() {
 
-    // Заполнение первой строки
     for (let j = 0; j < 9; j++) {
         board[0][j] = j + 1;
     }
@@ -13,20 +12,9 @@ function createSudoku() {
 
     // Заполнение оставшейся части
     for (let i = 1; i < 9; i++) {
-        let currentNum = board[i-1][0] + 3;
-        if (currentNum > 9) {
-            currentNum = board[i-3][0] + 1;
-        }   
+        let shift = i % 3 === 0 ? 1 : 3; // Сдвиг: 3 для блоков, 1 для строк внутри блока
         for (let j = 0; j < 9; j++) {
-            board[i][j] = currentNum;
-
-            if (currentNum > 9) {
-                board[i][j] -= 9;
-                currentNum -= 9;
-            }
-            else {
-                currentNum++;
-            }
+            board[i][j] = board[i - 1][(j + shift) % 9];
         }
     }
 
@@ -53,7 +41,6 @@ function createSudoku() {
         }
     }
 
-
     
     // Обмен двух столбцов в одном районе
     for (let j = 0; j < 9; j += 3) {
@@ -66,6 +53,9 @@ function createSudoku() {
             board[i][randJ] = tmp;
         }
     }
+
+
+    // Обмен двух 3-ёх блоков 3x3 по вертикали
 
     return board
 }
