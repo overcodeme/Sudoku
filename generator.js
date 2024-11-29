@@ -3,6 +3,83 @@ let board = Array.from({ length: 9 }, () =>
 );
 
 
+function sudokuGenerator() {
+    funcs = [transposing(), swapRowSmall(), swapColSmall(), swapRowArea(), swapColArea()];
+}
+
+
+// Транспонирование матрицы
+function transposing() {
+    for (let i = 0; i < 9; i++) {
+        for (let j = i + 1; j < 9; j++) {
+            let tmp = board[i][j];
+            board[i][j] = board[j][i];
+            board[j][i] = tmp;
+        }
+    }
+}
+
+
+// Обмен двух строк в одном районе
+function swapRowSmall() {
+    let swapIndexes = [1, 2];
+    let randI = swapIndexes[Math.floor(Math.random() * swapIndexes.length)];
+
+    for (let i = 0; i < 9; i += 3) {
+        for (let j = 0; j < 9; j++) {
+            let tmp = board[i][j];
+            board[i][j] = board[randI][j];
+            board[randI][j] = tmp;
+        }
+    }
+}
+
+
+// Обмен двух столбцов в одном районе
+function swapColSmall() {
+    let swapIndexes = [1, 2];
+    let randJ = swapIndexes[Math.floor(Math.random() * swapIndexes.length)];
+
+    for (let j = 0; j < 9; j += 3) {
+        for (let i = 0; i < 9; i++) {
+            let tmp = board[i][j];
+            board[i][j] = board[i][randJ];
+            board[i][randJ] = tmp;
+        }
+    }
+}
+
+
+// Обмен двух блоков по горизонтали
+function swapRowArea() {
+    let swapIndexes = [1, 2];
+    let randI = swapIndexes[Math.floor(Math.random() * swapIndexes.length)];
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 9; j++) {
+            tmp = board[i][j];
+            board[i][j] = board[3*randI + 1][j] ;
+            board[3*randI + 1][j] = tmp;
+        }
+    }
+}
+
+
+// Обмен двух блоков по вертикали
+function swapColArea() {
+    let swapIndexes = [1, 2];
+    let randJ = swapIndexes[Math.floor(Math.random() * swapIndexes.length)];
+
+    for (let j = 0; j < 3; j++) {
+        for (let i = 0; i < 9; i++) {
+            tmp = board[j][i];
+            board[j][i] = board[3*randJ + 1][i];
+            board[3*randJ + 1][i] = tmp;
+        }
+    }
+}
+
+
 function createSudoku() {
 
     for (let j = 0; j < 9; j++) {
@@ -17,45 +94,6 @@ function createSudoku() {
             board[i][j] = board[i - 1][(j + shift) % 9];
         }
     }
-
-
-    // Транспонирование матрицы
-    for (let i = 0; i < 9; i++) {
-        for (let j = i + 1; j < 9; j++) {
-            let tmp = board[i][j];
-            board[i][j] = board[j][i];
-            board[j][i] = tmp;
-        }
-    }
-
-
-    // Обмен двух строк в одном районе
-    for (let i = 0; i < 9; i += 3) {
-        let swapIndexes = [i + 1, i + 2];
-        let randI = swapIndexes[Math.floor(Math.random() * swapIndexes.length)];
-
-        for (let j = 0; j < 9; j++) {
-            let tmp = board[i][j];
-            board[i][j] = board[randI][j];
-            board[randI][j] = tmp;
-        }
-    }
-
-    
-    // Обмен двух столбцов в одном районе
-    for (let j = 0; j < 9; j += 3) {
-        let swapIndexes = [j + 1, j + 2];
-        let randJ = swapIndexes[Math.floor(Math.random() * swapIndexes.length)];
-        
-        for (let i = 0; i < 9; i++) {
-            let tmp = board[i][j];
-            board[i][j] = board[i][randJ];
-            board[i][randJ] = tmp;
-        }
-    }
-
-
-    // Обмен двух 3-ёх блоков 3x3 по вертикали
 
     return board
 }
