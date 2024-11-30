@@ -1,8 +1,10 @@
-import createSudoku from './generator.js';
+import { sudokuGenerator, createSudoku } from './generator.js';
+
 
 let board = createSudoku();
+sudokuGenerator();
+
 const board_field = document.querySelector('.grid-field')
-console.log(board);
 
 
 for (let blockRow = 0; blockRow < 3; blockRow++) {

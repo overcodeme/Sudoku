@@ -3,8 +3,30 @@ let board = Array.from({ length: 9 }, () =>
 );
 
 
-function sudokuGenerator() {
-    funcs = [transposing(), swapRowSmall(), swapColSmall(), swapRowArea(), swapColArea()];
+export function sudokuGenerator() {
+    for (let i = 0; i < 10; i ++) {
+        let randFunc = Math.floor(Math.random() * 5);
+
+        switch(randFunc) {
+            case 1: 
+                transposing();
+                break;
+            case 2:
+                swapRowSmall();
+                break;
+            case 3:
+                swapColSmall();
+                break;
+            case 4:
+                swapRowArea();
+                break;
+            case 5:
+                swapColArea();
+                break;
+        }
+    }
+
+    return board;
 }
 
 
@@ -57,7 +79,7 @@ function swapRowArea() {
 
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 9; j++) {
-            tmp = board[i][j];
+            let tmp = board[i][j];
             board[i][j] = board[3*randI + 1][j] ;
             board[3*randI + 1][j] = tmp;
         }
@@ -72,7 +94,7 @@ function swapColArea() {
 
     for (let j = 0; j < 3; j++) {
         for (let i = 0; i < 9; i++) {
-            tmp = board[j][i];
+            let tmp = board[j][i];
             board[j][i] = board[3*randJ + 1][i];
             board[3*randJ + 1][i] = tmp;
         }
@@ -80,7 +102,7 @@ function swapColArea() {
 }
 
 
-function createSudoku() {
+export function createSudoku() {
 
     for (let j = 0; j < 9; j++) {
         board[0][j] = j + 1;
@@ -98,8 +120,6 @@ function createSudoku() {
     return board
 }
 
-
-export default createSudoku;
 
 
 
