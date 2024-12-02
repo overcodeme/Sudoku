@@ -60,6 +60,7 @@ function swapRowSmall() {
     }
 }
 
+
 // Обмен двух столбцов в одном районе
 function swapColSmall() {
     let area = Math.floor(Math.random() * 3);
@@ -83,11 +84,9 @@ function swapRowArea() {
     let area1 = Math.floor(Math.random() * 3); 
     let area2 = Math.floor(Math.random() * 3); 
 
-
     while (area1 === area2) {
         area2 = Math.floor(Math.random() * 3);
     }
-
 
     for (let i = 0; i < 3; i++) {
         let row1 = area1 * 3 + i;
@@ -100,7 +99,6 @@ function swapRowArea() {
         }
     }
 }
-
 
 
 // Обмен двух блоков по вертикали
@@ -125,7 +123,6 @@ function swapColArea() {
 }
 
 
-
 export function createSudoku() {
 
     for (let j = 0; j < 9; j++) {
@@ -145,9 +142,38 @@ export function createSudoku() {
 }
 
 
+// Удаление элементов с проверкой единственного решения
+export function elemDeleter(n=40) {
+    let currCount = 81;
+    while (currCount > n) {
+        let randI = Math.floor(Math.random() * 9);
+        let randJ = Math.floor(Math.random() * 9);
+
+        while (board[randI][randJ] == 0) {
+            randI = Math.floor(Math.random() * 9);
+            randJ = Math.floor(Math.random() * 9);
+        }
+
+        board[randI][randJ] = 0;
+        currCount--;
+    }
+}
 
 
-
+// Выбор уровня сложности
+function chooseLVL(lvl) {
+    switch (lvl) {
+        case 'easy':
+            elemDeleter(40); // Легкий уровень
+            break;
+        case 'medium':
+            elemDeleter(30); // Средний уровень
+            break;
+        case 'hard':
+            elemDeleter(20); // Сложный уровень
+            break;
+    }
+}
 
 
 
