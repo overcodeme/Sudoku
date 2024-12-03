@@ -176,6 +176,24 @@ function chooseLVL(lvl) {
 }
 
 
+// Проверка решения для заданной ячейки
+function isValid(num, currI, currJ) {
+    // Проверка по строке
+    for (let j = currJ + 1; j < 9; j++) {
+        if (board[currI][j] == num) {
+            return False
+        } 
+    }
 
+    // Проверка по столбцу
+    for (let i = currI + 1; i < 9; i++) {
+        if (board[i][currJ] == num) {
+            return False
+        }
+    }
+
+    // Проверка в блоке 
+    
+}
 
 
