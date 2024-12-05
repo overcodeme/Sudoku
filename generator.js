@@ -209,3 +209,25 @@ function isValid(num, numI, numJ) {
 }
 
 
+function solve() {
+    for (let i = 0; i < 9; i ++) {
+        for (let j = 0; j < 9; j++) {
+            if (board[i][j] == 0) {
+                for (let num = 1; num < 10; num++) {
+                    if (isValid(num, i, j)) {
+                        board[i][j] = num;
+                        if (solve()) {
+                            return true
+                        }
+                        board[i][j] = 0;
+                    }
+                    return false;
+                }
+            }
+            
+        }
+    }
+    return true;
+}
+
+
