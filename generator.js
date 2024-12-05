@@ -177,23 +177,37 @@ function chooseLVL(lvl) {
 
 
 // Проверка решения для заданной ячейки
-function isValid(num, currI, currJ) {
+function isValid(num, numI, numJ) {
     // Проверка по строке
-    for (let j = currJ + 1; j < 9; j++) {
-        if (board[currI][j] == num) {
+    for (let j = numJ + 1; j < 9; j++) {
+        if (board[numI][j] == num) {
             return False
         } 
     }
 
     // Проверка по столбцу
-    for (let i = currI + 1; i < 9; i++) {
-        if (board[i][currJ] == num) {
+    for (let i = numI + 1; i < 9; i++) {
+        if (board[i][numJ] == num) {
             return False
         }
     }
 
+
+    startI = Math.floor(numI / 3) * 3;
+    endI = startI + 3;
+    startJ = Math.floor(numJ / 3) * 3;
+    endJ = startJ + 3;
+
     // Проверка в блоке 
-    
+    for (let i = startI; i < endI; i++) {
+        for (let j = startJ; j < endJ; j++) {
+            if (i != numI && j != numJ) {
+                if (board[i][j] == board[numI][numJ]) {
+                    return False
+                }
+            }
+        }
+    }
 }
 
 
