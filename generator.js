@@ -154,8 +154,14 @@ export function elemDeleter(n=40) {
             randJ = Math.floor(Math.random() * 9);
         }
 
+        const tmp = board[randI][randJ];
         board[randI][randJ] = 0;
         currCount--;
+
+        if (hasMultipleSolutions()) {
+            board[randI][randJ] = tmp;
+            currCount++;
+        }
     }
 }
 
@@ -209,25 +215,39 @@ function isValid(num, numI, numJ) {
 }
 
 
-function solve() {
-    for (let i = 0; i < 9; i ++) {
-        for (let j = 0; j < 9; j++) {
-            if (board[i][j] == 0) {
-                for (let num = 1; num < 10; num++) {
-                    if (isValid(num, i, j)) {
-                        board[i][j] = num;
-                        if (solve()) {
-                            return true
+// Проверка на множественное решение
+function hasMultipleSolutions(board) {
+    let solutionsCount = 0;
+
+
+    // Решение судоку
+    function solve() {
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                if (board[i][j] == 0) {
+                    for (let num = 1; num <= 9; num++) {
+                        if (isValid(num, i, j)) {
+                            board[i][j] = num;
+                            if (solve()) {
+                                solutionsCount++;
+                                // Если найдено больше одного решения, прервать дальнейший поиск
+                                if (solutionsCount > 1) {
+                                    board[i][j] = 0;
+                                    return true;
+                                }
+                            }
+                            board[i][j] = 0;
                         }
-                        board[i][j] = 0;
                     }
                     return false;
                 }
             }
-            
         }
+        return true;
     }
-    return true;
+
+    solve();
+    return solutionsCount > 1;
 }
 
 
