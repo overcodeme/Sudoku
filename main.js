@@ -1,9 +1,8 @@
-import { sudokuGenerator, createSudoku, elemDeleter } from './generator.js';
+import { sudokuGenerator } from './generator.js';
 
 
-let board = createSudoku();
-sudokuGenerator();
-elemDeleter();
+let board = sudokuGenerator();
+
 
 const board_field = document.querySelector('.grid-field')
 
