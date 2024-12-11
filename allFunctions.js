@@ -192,6 +192,8 @@ export function sudokuFilling(board, board_field) {
                 for (let colInBlock = 0; colInBlock < 3; colInBlock++) {
                     const elem = document.createElement('div');
                     elem.classList.add("elem");
+                    elem.setAttribute('data-row', blockRow * 3 + rowInBlock);
+                    elem.setAttribute('data-col', blockCol * 3 + colInBlock);
     
                     if (board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock] != 0) {
                         elem.textContent = board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock];

@@ -7,11 +7,15 @@ const board_field = document.querySelector('.grid-field')
 
 sudokuFilling(board, board_field);
 
-let elems = document.querySelectorAll('.elem')
-elems.forEach(() => {
-    document.addEventListener('click', () => {
-        
-    })
+board_field.addEventListener('click', (event) => {
+    const cell = event.target;
+    const activeCell = board_field.querySelector('.active');
+
+    if (activeCell) {
+        activeCell.classList.remove('active');
+    }
+
+    cell.classList.add('active');
 })
 
 
