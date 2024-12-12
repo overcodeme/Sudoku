@@ -21,7 +21,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .elem {
@@ -31,17 +31,14 @@ body {
     justify-content: center;
     width: 60px;
     height: 60px;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .elem.active {
-    outline: 2px solid #007bff; 
-    outline-offset: -2px; 
     background-color: LightGray;
 }
 
 .elem:hover {
-    background-color: LightGray;
     cursor: pointer;
 }
 

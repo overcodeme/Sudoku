@@ -3,25 +3,41 @@ import { sudokuGenerator } from './generator.js';
 
 
 let board = sudokuGenerator();
+const new_game_button = document.querySelector('.button1');
 const board_field = document.querySelector('.grid-field')
+const input_buttons = document.querySelector('.grid-input-buttons');
 
 sudokuFilling(board, board_field);
 
-board_field.addEventListener('click', (event) => {
-    const cell = event.target;
-    const activeCell = board_field.querySelector('.active');
 
-    if (activeCell) {
-        activeCell.classList.remove('active');
+// Обработчик нажатий на ячейки
+board_field.addEventListener('click', (event) => {
+    const elem = event.target;
+    const activeElem = board_field.querySelector('.active');
+
+    if (activeElem) {
+        activeElem.classList.remove('active');
     }
 
-    cell.classList.add('active');
+    elem.classList.add('active');
 })
 
 
-const new_game_button = document.querySelector('.button1');
+// Обработчик создания новой игры
 new_game_button.addEventListener('click', () => {
     board = sudokuGenerator();
     board_field.innerHTML = '';
     sudokuFilling(board, board_field);
+})
+
+
+// Обработчик нажатия на цифры для заполнения ячеек
+input_buttons.addEventListener('click', (event) => {
+    const num = event.target.textContent;
+    
+    const activeElem = board_field.querySelector('.active');
+    if (activeElem) {
+        activeElem.innerHTML = num;
+        board[activeElem.getAttribute('data-row')][activeElem.getAttribute('data-col')] = num;
+    }
 })
