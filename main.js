@@ -6,6 +6,7 @@ let board = sudokuGenerator();
 const new_game_button = document.querySelector('.button1');
 const board_field = document.querySelector('.grid-field')
 const input_buttons = document.querySelector('.grid-input-buttons');
+const clear_item_button = document.querySelector('#eraser-img');
 
 sudokuFilling(board, board_field);
 
@@ -41,3 +42,13 @@ input_buttons.addEventListener('click', (event) => {
         board[activeElem.getAttribute('data-row')][activeElem.getAttribute('data-col')] = num;
     }
 })
+
+
+// Обработчик очистки ячейки
+clear_item_button.addEventListener('click', (event) => {
+    const activeElem = board_field.querySelector('.active');
+    if (activeElem) {
+        activeElem.innerHTML = '';
+        board[activeElem.getAttribute('data-row')][activeElem.getAttribute('data-col')] = 0;
+    }
+}) 
