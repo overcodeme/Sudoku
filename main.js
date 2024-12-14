@@ -45,9 +45,10 @@ input_buttons.addEventListener('click', (event) => {
 
 
 // Обработчик очистки ячейки
-clear_item_button.addEventListener('click', (event) => {
+clear_item_button.addEventListener('click', () => {
     const activeElem = board_field.querySelector('.active');
-    if (activeElem) {
+    const undeletable = activeElem.classList.contains('undeletable');
+    if (activeElem && !undeletable) {
         activeElem.innerHTML = '';
         board[activeElem.getAttribute('data-row')][activeElem.getAttribute('data-col')] = 0;
     }

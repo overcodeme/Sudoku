@@ -196,6 +196,7 @@ export function sudokuFilling(board, board_field) {
                     elem.setAttribute('data-col', blockCol * 3 + colInBlock);
     
                     if (board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock] != 0) {
+                        elem.classList.add('undeletable');
                         elem.textContent = board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock];
                     }
     
