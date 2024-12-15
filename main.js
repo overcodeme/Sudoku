@@ -7,6 +7,7 @@ const new_game_button = document.querySelector('.button1');
 const board_field = document.querySelector('.grid-field')
 const input_buttons = document.querySelector('.grid-input-buttons');
 const clear_item_button = document.querySelector('#eraser-img');
+const levels = document.querySelectorAll('.lvl');
 
 sudokuFilling(board, board_field);
 
@@ -53,3 +54,29 @@ clear_item_button.addEventListener('click', () => {
         board[activeElem.getAttribute('data-row')][activeElem.getAttribute('data-col')] = 0;
     }
 }) 
+
+
+//
+levels.forEach((lvl) => {
+    lvl.addEventListener('click', () => {
+        let lvl_value = parseInt(lvl.getAttribute('id'));
+        console.log(lvl_value)
+        switch (lvl_value) {
+            case 1:
+                board = sudokuGenerator(40);
+                board_field.innerHTML = '';
+                sudokuFilling(board, board_field);
+                break;
+            case 2:
+                board = sudokuGenerator(30);
+                board_field.innerHTML = '';
+                sudokuFilling(board, board_field);
+                break;
+            case 3:
+                board = sudokuGenerator(20);
+                board_field.innerHTML = '';
+                sudokuFilling(board, board_field);
+                break;
+        }
+    })
+})
