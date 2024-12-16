@@ -3,6 +3,7 @@ import { sudokuGenerator } from './generator.js';
 
 
 let board = sudokuGenerator();
+let errors_counter = 0;
 const new_game_button = document.querySelector('.button1');
 const board_field = document.querySelector('.grid-field')
 const input_buttons = document.querySelector('.grid-input-buttons');
@@ -68,12 +69,12 @@ levels.forEach((lvl) => {
                 sudokuFilling(board, board_field);
                 break;
             case 2:
-                board = sudokuGenerator(30);
+                board = sudokuGenerator(32);
                 board_field.innerHTML = '';
                 sudokuFilling(board, board_field);
                 break;
             case 3:
-                board = sudokuGenerator(20);
+                board = sudokuGenerator(24);
                 board_field.innerHTML = '';
                 sudokuFilling(board, board_field);
                 break;
