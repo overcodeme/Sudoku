@@ -32,10 +32,11 @@ export function sudokuGenerator(n=40) {
         }
     }
 
+    const completed_board = JSON.parse(JSON.stringify(board));
     // Удаление элементов
     elemDeleter(board, n);
 
-    return board;
+    return [completed_board, board];
 }
 
 
