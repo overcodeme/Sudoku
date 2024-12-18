@@ -145,3 +145,7 @@ body {
 .grey {
     color: grey;
 }
+
+.error {
+    color: #ff0000; /* Красный текст */
+}

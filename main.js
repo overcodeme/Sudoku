@@ -37,18 +37,6 @@ new_game_button.addEventListener('click', () => {
 })
 
 
-// Обработчик нажатия на цифры для заполнения ячеек
-input_buttons.addEventListener('click', (event) => {
-    const num = event.target.textContent;
-    
-    const activeElem = board_field.querySelector('.active');
-    if (activeElem) {
-        activeElem.innerHTML = num;
-        board[activeElem.getAttribute('data-row')][activeElem.getAttribute('data-col')] = num;
-    }
-})
-
-
 // Обработчик очистки ячейки
 clear_item_button.addEventListener('click', () => {
     const activeElem = board_field.querySelector('.active');
@@ -92,8 +80,25 @@ levels.forEach((lvl) => {
 
 
 // Проверка вставленной цифры на правильность
-board.forEach(num => {
-    num.addEventListener('onchange', () => {
+input_buttons.addEventListener('click', (event) => {
+    const num = event.target.textContent;
 
-    })
+    const activeElem = document.querySelector('.active');
+    if (activeElem) {
+        const row = activeElem.getAttribute('data-row');
+        const col = activeElem.getAttribute('data-col');   
+        
+        if (parseInt(num) == completed_board[row][col]) {
+            activeElem.innerHTML = num;
+            activeElem.classList.remove('error');
+            board[row][col] = parseInt(num);
+        }
+        else {
+            activeElem.innerHTML = num;
+            let errors = document.querySelector('#errors');
+            activeElem.classList.add('error');
+            errors_counter++;
+            errors.innerHTML = `${errors_counter}/3`;
+        }
+    }
 })
