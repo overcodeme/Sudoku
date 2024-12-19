@@ -207,3 +207,9 @@ export function sudokuFilling(board, board_field) {
         }
     }
 }
+
+
+export function showGameOverModal() {
+    const modal = document.querySelector('#game-over-modal');
+    modal.style.display = 'block';
+}

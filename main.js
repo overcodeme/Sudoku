@@ -6,14 +6,24 @@ let board = sudokuGenerator();
 let completed_board = board[0];
 board = board[1];
 let errors_counter = 0;
-const new_game_button = document.querySelector('.button1');
+const new_game_buttons = document.querySelectorAll('.button1');
 const board_field = document.querySelector('.grid-field')
 const input_buttons = document.querySelector('.grid-input-buttons');
 const clear_item_button = document.querySelector('#eraser-img');
 const levels = document.querySelectorAll('.lvl');
+const modal = document.querySelector('#game-over-modal');
 
 sudokuFilling(board, board_field);
 console.log(completed_board);
+
+
+// Отображение всплывающего окна о поражении
+function showGameOverModal() {
+    const modal = document.querySelector('#game-over-modal');
+    modal.style.display = 'block';
+    errors_counter = 0;
+}
+
 
 // Обработчик нажатий на ячейки
 board_field.addEventListener('click', (event) => {
@@ -29,11 +39,14 @@ board_field.addEventListener('click', (event) => {
 
 
 // Обработчик создания новой игры
-new_game_button.addEventListener('click', () => {
-    board = sudokuGenerator();
-    board = board[1];
-    board_field.innerHTML = '';
-    sudokuFilling(board, board_field);
+new_game_buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        board = sudokuGenerator();
+        board = board[1];
+        board_field.innerHTML = '';
+        sudokuFilling(board, board_field);
+        modal.style.display = 'none';
+    })
 })
 
 
@@ -99,6 +112,10 @@ input_buttons.addEventListener('click', (event) => {
             activeElem.classList.add('error');
             errors_counter++;
             errors.innerHTML = `${errors_counter}/3`;
+            if (errors_counter == 3) {
+                showGameOverModal();
+                errors.innerHTML = '0/3';
+            }
         }
     }
 })
