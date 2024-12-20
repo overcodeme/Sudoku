@@ -11,7 +11,9 @@ const board_field = document.querySelector('.grid-field')
 const input_buttons = document.querySelector('.grid-input-buttons');
 const clear_item_button = document.querySelector('#eraser-img');
 const levels = document.querySelectorAll('.lvl');
-const modal = document.querySelector('#game-over-modal');
+const game_over_modal = document.querySelector('.game-over-modal');
+const game_win_modal = document.querySelector('.game-win-modal');
+
 
 sudokuFilling(board, board_field);
 console.log(completed_board);
@@ -19,8 +21,13 @@ console.log(completed_board);
 
 // Отображение всплывающего окна о поражении
 function showGameOverModal() {
-    const modal = document.querySelector('#game-over-modal');
-    modal.style.display = 'block';
+    game_over_modal.style.display = 'block';
+    errors_counter = 0;
+}
+
+
+function showGameWinModal() {
+    game_win_modal.style.display = 'block';
     errors_counter = 0;
 }
 
@@ -45,7 +52,7 @@ new_game_buttons.forEach((button) => {
         board = board[1];
         board_field.innerHTML = '';
         sudokuFilling(board, board_field);
-        modal.style.display = 'none';
+        game_over_modal.style.display = 'none';
     })
 })
 
@@ -116,6 +123,10 @@ input_buttons.addEventListener('click', (event) => {
                 showGameOverModal();
                 errors.innerHTML = '0/3';
             }
+        }
+        if (completed_board == board) {
+            showGameWinModal();
+            errors.innerHTML = '0/3';
         }
     }
 })
