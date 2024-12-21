@@ -14,10 +14,7 @@ const levels = document.querySelectorAll('.lvl');
 const game_over_modal = document.querySelector('.game-over-modal');
 const game_win_modal = document.querySelector('.game-win-modal');
 
-
 sudokuFilling(board, board_field);
-console.log(completed_board);
-
 
 // Отображение всплывающего окна о поражении
 function showGameOverModal() {
@@ -53,6 +50,7 @@ new_game_buttons.forEach((button) => {
         board_field.innerHTML = '';
         sudokuFilling(board, board_field);
         game_over_modal.style.display = 'none';
+        game_win_modal.style.display = 'none';
     })
 })
 
@@ -124,7 +122,7 @@ input_buttons.addEventListener('click', (event) => {
                 errors.innerHTML = '0/3';
             }
         }
-        if (completed_board == board) {
+        if (completed_board.toString() === board.toString()) {
             showGameWinModal();
             errors.innerHTML = '0/3';
         }

@@ -6,7 +6,7 @@ let board = Array.from({ length: 9 }, () =>
 );
 
 
-export function sudokuGenerator(n=40) {
+export function sudokuGenerator(n=80) {
     createSudoku();
 
     for (let i = 0; i < 10; i ++) {
