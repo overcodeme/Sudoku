@@ -121,6 +121,28 @@ body {
     background-color: LightGray;
 }
 
+#hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#hint-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: Gainsboro;
+}
+
+#hint-img:hover {
+    cursor: pointer;
+    background-color: LightGray;
+}
+
 #levels {
     display: flex;
     align-items: center;
