@@ -13,6 +13,7 @@ const clear_item_button = document.querySelector('#eraser-img');
 const levels = document.querySelectorAll('.lvl');
 const game_over_modal = document.querySelector('.game-over-modal');
 const game_win_modal = document.querySelector('.game-win-modal');
+const hint = document.querySelector('#hint');
 
 sudokuFilling(board, board_field);
 
@@ -126,5 +127,19 @@ input_buttons.addEventListener('click', (event) => {
             showGameWinModal();
             errors.innerHTML = '0/3';
         }
+    }
+})
+
+
+// Обработчик событий для подсказки
+hint.addEventListener('click', () => {
+    const activeElem = document.querySelector('.active');
+
+    if (activeElem) {
+        let row = activeElem.getAttribute('data-row');
+        let col = activeElem.getAttribute('data-col');
+
+        board[row][col] = completed_board[row][col];
+        activeElem.innerHTML = board[row][col];
     }
 })
