@@ -32,11 +32,11 @@ body {
     justify-content: center;
     width: 60px;
     height: 60px;
-    font-size: 35px;
+    font-size: 40px;
 }
 
 .elem.active {
-    background-color: LightGray;
+    background-color: LightBlue;
 }
 
 .elem:hover {
@@ -249,4 +249,8 @@ body {
     width: 25px;
     height: 25px;
     margin-left: 40px;
+}
+
+.selected {
+    background-color: LightBlue;
 }

@@ -35,11 +35,20 @@ function showGameWinModal() {
 
 // Обработчик нажатий на ячейки
 board_field.addEventListener('click', (event) => {
-    const elem = event.target;
-    const activeElem = board_field.querySelector('.active');
+    const all_elems = document.querySelectorAll('.elem');
+    const activeElem = event.target;
 
     if (activeElem) {
         activeElem.classList.remove('active');
+        all_elems.forEach((e) => {
+            e.classList.remove('selected');
+        })
+    }
+
+    for (let e of all_elems) {
+        if (e.innerHTML == activeElem.innerHTML) {
+            e.classList.add('selected');
+        }
     }
 
     elem.classList.add('active');
