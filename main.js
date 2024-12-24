@@ -55,7 +55,10 @@ new_game_buttons.forEach((button) => {
         sudokuFilling(board, board_field);
         game_over_modal.style.display = 'none';
         game_win_modal.style.display = 'none';
+        errors_counter = 0;
         errors.innerHTML = '0/3';
+        hints_counter = 3;
+        hints_left.innerHTML = 3;
     })
 })
 
@@ -143,7 +146,7 @@ hint.addEventListener('click', () => {
         let col = activeElem.getAttribute('data-col');
 
         board[row][col] = completed_board[row][col];
-        activeElem.innerHTML = board[row][col];
+        activeElem.innerHTML = completed_board[row][col];
         hints_counter--;
         hints_left.innerHTML = hints_counter;
     }
