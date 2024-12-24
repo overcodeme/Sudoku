@@ -6,6 +6,8 @@ let board = sudokuGenerator();
 let completed_board = board[0];
 board = board[1];
 let errors_counter = 0;
+let hints_counter = 3;
+const errors = document.querySelector('#errors');
 const new_game_buttons = document.querySelectorAll('.button1');
 const board_field = document.querySelector('.grid-field')
 const input_buttons = document.querySelector('.grid-input-buttons');
@@ -13,6 +15,7 @@ const clear_item_button = document.querySelector('#eraser-img');
 const levels = document.querySelectorAll('.lvl');
 const game_over_modal = document.querySelector('.game-over-modal');
 const game_win_modal = document.querySelector('.game-win-modal');
+const hints_left = document.querySelector('#hints-left');
 const hint = document.querySelector('#hint');
 
 sudokuFilling(board, board_field);
@@ -52,6 +55,7 @@ new_game_buttons.forEach((button) => {
         sudokuFilling(board, board_field);
         game_over_modal.style.display = 'none';
         game_win_modal.style.display = 'none';
+        errors.innerHTML = '0/3';
     })
 })
 
@@ -114,7 +118,6 @@ input_buttons.addEventListener('click', (event) => {
         }
         else {
             activeElem.innerHTML = num;
-            let errors = document.querySelector('#errors');
             activeElem.classList.add('error');
             errors_counter++;
             errors.innerHTML = `${errors_counter}/3`;
@@ -135,11 +138,13 @@ input_buttons.addEventListener('click', (event) => {
 hint.addEventListener('click', () => {
     const activeElem = document.querySelector('.active');
 
-    if (activeElem) {
+    if (activeElem && hints_counter > 0) {
         let row = activeElem.getAttribute('data-row');
         let col = activeElem.getAttribute('data-col');
 
         board[row][col] = completed_board[row][col];
         activeElem.innerHTML = board[row][col];
+        hints_counter--;
+        hints_left.innerHTML = hints_counter;
     }
 })
