@@ -46,7 +46,7 @@ board_field.addEventListener('click', (event) => {
     }
 
     for (let e of all_elems) {
-        if (e.innerHTML == activeElem.innerHTML) {
+        if (e.innerHTML != 0 && e.innerHTML == activeElem.innerHTML) {
             e.classList.add('selected');
         }
     }
