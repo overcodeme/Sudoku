@@ -182,7 +182,7 @@ export function hasMultipleSolutions(board) {
 
 
 export function sudokuFilling(board, board_field) {
-    
+    let blockNum = 1;
     for (let blockRow = 0; blockRow < 3; blockRow++) {
         for (let blockCol = 0; blockCol < 3; blockCol++) {
             const block = document.createElement('div');
@@ -194,6 +194,7 @@ export function sudokuFilling(board, board_field) {
                     elem.classList.add("elem");
                     elem.setAttribute('data-row', blockRow * 3 + rowInBlock);
                     elem.setAttribute('data-col', blockCol * 3 + colInBlock);
+                    elem.setAttribute('block-num', blockNum);
     
                     if (board[blockRow * 3 + rowInBlock][blockCol * 3 + colInBlock] != 0) {
                         elem.classList.add('undeletable');
@@ -204,6 +205,7 @@ export function sudokuFilling(board, board_field) {
                 }
             }
             board_field.appendChild(block);
+            blockNum++;
         }
     }
 }

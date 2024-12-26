@@ -73,6 +73,13 @@ board_field.addEventListener('click', (event) => {
             e.classList.add('selected2');
         }
     }
+
+    // Выделение всех элементов текущего блока
+    for (let e of all_elems) {
+        if (e.getAttribute('block-num') == activeElem.getAttribute('block-num')) {
+            e.classList.add('selected2');
+        }
+    }
 })
 
 
