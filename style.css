@@ -36,7 +36,7 @@ body {
 }
 
 .elem.active {
-    background-color: LightBlue;
+    background-color: rgb(187, 222, 250);
 }
 
 .elem:hover {
@@ -251,6 +251,11 @@ body {
     margin-left: 40px;
 }
 
-.selected {
-    background-color: LightBlue;
+
+.selected1 {
+    background-color: rgb(187, 222, 250);
+}
+
+.selected2 {
+    background-color: rgb(226, 234, 244);
 }

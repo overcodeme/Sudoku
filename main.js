@@ -36,27 +36,43 @@ function showGameWinModal() {
 // Обработчик нажатий на ячейки
 board_field.addEventListener('click', (event) => {
     const all_elems = document.querySelectorAll('.elem');
+    const last_active_elem = document.querySelector('.active');
     const activeElem = event.target;
 
-    if (activeElem) {
-        activeElem.classList.remove('active');
+    if (last_active_elem) {
         all_elems.forEach((e) => {
-            e.classList.remove('selected');
+            e.classList.remove('selected1');
+            e.classList.remove('selected2');
         })
+        last_active_elem.classList.remove('active');
     }
 
+    activeElem.classList.add('active');
+
+    // Выделение всех схожих по цифре ячеек
     if (activeElem.innerHTML != 0) {
         for (let e of all_elems) {
             if (e.innerHTML == activeElem.innerHTML) {
-                e.classList.add('selected');
+                e.classList.add('selected1');
             }
         }
-    } else {
-        activeElem.classList.add('selected');
     }
 
+    const row = activeElem.getAttribute('data-row');
+    const col = activeElem.getAttribute('data-col');
+    // Выделение элементов на одной строке
+    for (let e of all_elems) {
+        if (e.getAttribute('data-row') == row) {
+            e.classList.add('selected2');
+        }
+    }
 
-    elem.classList.add('active');
+    // Выделение элементов в одном столбце
+    for (let e of all_elems) {
+        if (e.getAttribute('data-col') == col) {
+            e.classList.add('selected2');
+        }
+    }
 })
 
 
