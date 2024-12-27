@@ -19,6 +19,7 @@ const hints_left = document.querySelector('#hints-left');
 const hint = document.querySelector('#hint');
 
 sudokuFilling(board, board_field);
+console.log(board);
 
 // Отображение всплывающего окна о поражении
 function showGameOverModal() {
@@ -52,8 +53,9 @@ board_field.addEventListener('click', (event) => {
     // Выделение всех схожих по цифре ячеек
     if (activeElem.innerHTML != 0) {
         for (let e of all_elems) {
-            if (e.innerHTML == activeElem.innerHTML) {
+            if (parseInt(e.innerHTML) == parseInt(activeElem.innerHTML)) {
                 e.classList.add('selected1');
+                console.log(parseInt(e.innerHTML), 'и', parseInt(activeElem.innerHTML));
             }
         }
     }
@@ -171,6 +173,7 @@ input_buttons.addEventListener('click', (event) => {
             errors.innerHTML = '0/3';
         }
     }
+    console.log(board);
 })
 
 

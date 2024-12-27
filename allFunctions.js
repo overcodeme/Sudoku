@@ -182,7 +182,7 @@ export function hasMultipleSolutions(board) {
 
 
 export function sudokuFilling(board, board_field) {
-    let blockNum = 1;
+    let blockNum = 0;
     for (let blockRow = 0; blockRow < 3; blockRow++) {
         for (let blockCol = 0; blockCol < 3; blockCol++) {
             const block = document.createElement('div');
